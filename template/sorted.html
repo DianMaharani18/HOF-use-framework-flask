@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  	<title>21102203 21102321</title>
+	  <meta charset="utf-8">
+	<style>
+		table, th{
+			border-collapse: collapse;
+		}
+		th, td {
+  			padding: 5px;
+		}
+		th{
+			background-color:rgb(170, 89, 89);
+			color: #FFFFFF;
+			padding: 10px;
+		}
+		tr:hover {background-color:#f5f5f5;}
+		
+		.borderFilm{
+			border-top-left-radius: 10px;
+		}
+		.borderPoster{
+			border-top-right-radius: 10px;
+		}
+		.navbar {
+			overflow: hidden;
+			background-color: rgb(119, 13, 13);
+			font-family: Arial, Helvetica, sans-serif;
+			border-radius: 10px;
+		}
+		.navbar a {
+			float: left;
+			font-size: 16px;
+			color: white;
+			text-align: center;
+			padding: 14px 16px;
+			text-decoration: none;
+		}
+		.dropdown {
+			float: left;
+			overflow: hidden;
+		}
+		.dropdown .dropbtn {
+			font-size: 16px;  
+			border: none;
+			outline: none;
+			color: white;
+			padding: 14px 16px;
+			background-color: inherit;
+			font-family: inherit;
+			margin: 0;
+		}
+		.navbar a:hover, .dropdown:hover .dropbtn {
+			background-color: rgb(255, 255, 255);
+			color:black;
+		}
+		.navbar a.active{
+			background-color:rgb(119, 13, 13);
+		}
+		.dropdown-content {
+			display: none;
+			position: absolute;
+			background-color: #f9f9f9;
+			min-width: 160px;
+			box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+			z-index: 1;
+		}
+		.dropdown-content a {
+			float: none;
+			color: black;
+			padding: 12px 16px;
+			text-decoration: none;
+			display: block;
+			text-align: left;
+		}
+		.dropdown-content a:hover {
+			background-color: #ddd;
+		}
+		.dropdown:hover .dropdown-content {
+			display: block;
+		}
+	</style>
+</head>
+<body>
+<br>
+<!-- Nav tabs -->
+<div class="navbar">
+	<a class="active" href="/">Home</a>
+	<a class = "" href="/urutkan">Urutan Film</a>
+	<div class="dropdown">
+	  <button class="dropbtn">Rating Film
+		<i class="fa fa-caret-down"></i>
+	  </button>
+	  <div class="dropdown-content">
+		<a href="/filterlebih"> Rating lebih dari 6.0 </a>
+		<a href="/filterkurang"> Rating kurang dari 6.0 </a>
+	  </div>
+	</div>
+	  <a class="" href=/author>Authors</a> 
+</div>
+<!-- Tab panes -->
+<h2 align="center">Urutan Film Rating Terendah</h2>
+<table style="width: 100%">
+    <tr align="center">
+    <th class="borderFilm" scope="col">ID</th>
+    <th scope="col">Title</th>
+    <th scope="col">Year</th>
+    <th scope="col">Genre</th>
+    <th scope="col">Rating</th>
+    <th class="borderPoster" scope="col">Poster</th>
+    </tr>
+	<tr class="row100 body"></tr>
+	{% set row = namespace(value=0)%}
+	{%for i in movies %}
+	<tr>
+   <td align="center">{{movies[row.value].id}}</td>
+	<td align="center">{{movies[row.value].Title}}</td>
+    <td align="center">{{movies[row.value].Year}}</td>
+    <td align="center">{{movies[row.value].Genre}}</td>
+    <td align="center">{{movies[row.value].Rating}}</td>
+    
+    <td align="center">
+    	<img src="{{movies[row.value].Poster}}" width="30%">
+	</td>
+	</tr>
+  	{% set row.value = row.value + 1%}
+	{% endfor%}
+</table>
+</body>
+</html>
